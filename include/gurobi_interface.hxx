@@ -238,7 +238,6 @@ public:
   {
     // possibly remove previous instance of term?
     const double _val(val);
-    objective_.remove(x);
     objective_.addTerms(&_val, &x, 1);
   }
   //////////////////////////////////////
@@ -296,6 +295,11 @@ public:
    ////////////////////////
    // solution functions //
    ////////////////////////
+
+   void clear_objective()
+   {
+      objective_.clear();
+   }
 
    bool solve()
    {
