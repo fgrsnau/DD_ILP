@@ -9,7 +9,20 @@ class gurobi_interface {
 public:
   gurobi_interface()
     : model_(env_)
-  {}
+  {
+#if 0
+    // This enables a very pessimistic hence slow configuration.
+    // Changing parameters on env_ also possible, but won’t affect models
+    // that already have been created in this environment.
+    model_.set(GRB_IntParam_NumericFocus, 3);
+    model_.set(GRB_DoubleParam_FeasibilityTol, 1e-9);
+    model_.set(GRB_DoubleParam_FeasibilityTol, 1e-9);
+    model_.set(GRB_DoubleParam_IntFeasTol, 1e-9);
+    model_.set(GRB_DoubleParam_MIPGap, 0);
+    model_.set(GRB_DoubleParam_MIPGapAbs, 0);
+#endif
+  }
+
   using variable = GRBVar;
 
   struct gurobi_variable_vector_iterator_strided {
