@@ -21,6 +21,9 @@ public:
     model_.set(GRB_DoubleParam_MIPGap, 0);
     model_.set(GRB_DoubleParam_MIPGapAbs, 0);
 #endif
+
+    model_.set(GRB_IntParam_Method, 1); // dual simplex
+    model_.set(GRB_IntParam_Threads, 1);
   }
 
   using variable = GRBVar;
